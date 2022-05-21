@@ -43,6 +43,10 @@ export class BackendStack extends Stack {
       .resourceForPath("sendreport")
       .addMethod("POST", new apigw.LambdaIntegration(lambdafn));
 
+        // logging api endpoint
+    new cdk.CfnOutput(this, "Send email endpoint", {
+      value: `${api.url}sendreport`,
+    });
 
   }
 }

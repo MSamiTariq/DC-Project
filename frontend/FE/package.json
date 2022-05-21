@@ -14,9 +14,13 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "formik": "^2.2.9",
     "gatsby": "^4.14.1",
+    "notistack": "^2.0.5",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "prettier": "^2.6.2"
