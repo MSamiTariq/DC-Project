@@ -1,4 +1,4 @@
-import { SES } from "aws-sdk";
+import { SES, EventBridge } from "aws-sdk";
 
 import {
   APIGatewayProxyEvent,
@@ -17,6 +17,23 @@ interface EmailParam {
 }
 interface SmsParam {
   PhoneNumber?: string;
+}
+
+function helper(body: any) {
+  const eventBridge = new EventBridge({ region: "us-east-2" });
+
+  return eventBridge
+    .putEvents({
+      Entries: [
+        {
+          EventBusName: "default",
+          Source: "custom.api",
+          DetailType: "order",
+          Detail: `{ "body": "${body}" }`,
+        },
+      ],
+    })
+    .promise();
 }
 
 exports.handler = async (
@@ -56,6 +73,7 @@ exports.handler = async (
 
   try {
     console.log(params);
+    const e = await helper(params);
     await ses.sendEmail(params).promise();
     return Responses._200({ message: "The email has been sent" });
   } catch (error) {

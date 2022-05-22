@@ -55,7 +55,7 @@ export default function Home() {
         headers: myHeaders,
         body: JSON.stringify({
           to: values.email,
-          from: "info@msami.ml",
+          from: "info@dcproject.tk",
           text: values.report,
           subject: values.subject,
           PhoneNumber: values.phoneNumber,
@@ -63,7 +63,7 @@ export default function Home() {
       }
 
       const response: any = await fetch(
-        "https://44kadn6yx7.execute-api.us-west-2.amazonaws.com/prod/sendreport",
+        "https://mm0u8tzzfc.execute-api.us-east-2.amazonaws.com/prod/sendreport",
         requestOptions
       )
 
